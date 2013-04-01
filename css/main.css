@@ -1,0 +1,17 @@
+body, div, h1, form, fieldset, input, textarea {
+  margin: 0; padding: 0; border: 0; outline: none;
+}
+html {
+  background-color: #031F21;
+}
+.left {
+	overflow: hidden;
+	display:inline-block;
+  	width: 400px;
+  	height:650px;
+	background-color: #090B0C;
+}
+.right {
+	float: left;
+	width: auto;
+}
