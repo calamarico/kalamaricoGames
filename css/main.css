@@ -5,13 +5,14 @@ html {
   background-color: #031F21;
 }
 .left {
-	overflow: hidden;
-	display:inline-block;
-  	width: 400px;
-  	height:650px;
+	float: left;
+	width: 400px;
+	height: 750px;
 	background-color: #090B0C;
 }
 .right {
-	float: left;
-	width: auto;
+	overflow: hidden;
+	display:inline-block;
+  	width: 300px;
+  	height:750px;
 }
