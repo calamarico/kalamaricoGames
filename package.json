@@ -1,9 +1,9 @@
 {
-	"name": "KGG",
-	"description": "Kalamarico Games Gallery Application",
-	"version": "0.0.1",
-	"private": true,
-	"dependencies": {
-		"express": "3.x"
-	}
+  "name": "KGG",
+  "description": "Kalamarico Games Gallery Application",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "socket.io": "~0.9.14"
+  }
 }
