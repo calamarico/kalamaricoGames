@@ -1,9 +1,12 @@
 {
-	"name": "KGG",
-	"description": "Kalamarico Games Gallery Application",
-	"version": "0.0.1",
-	"private": true,
-	"dependencies": {
-		"express": "3.x"
-	}
+  "name": "KGG",
+  "description": "Kalamarico Games Gallery Application",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.x"
+  },
+  "devDependencies": {
+    "connect": "~2.7.11"
+  }
 }
