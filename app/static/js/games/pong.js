@@ -1,25 +1,33 @@
 /**
  * PONG! by Kalamarico
  */
-GAMES.pong = function(container) {
-	var endGame = true;
-	var x = 0, y = 0, dx = 3, dy = 3, HumanBarX = 494, HumanBarY = 10, HumanDY = 3, barY = 0;
-	var ctx = container.getContext("2d"),
+GAMES.pong = (function() {
+	var endGame = true,
+		x = 0,
+		y = 0,
+		dx = 3,
+		dy = 3,
+		HumanBarX = 494,
+		HumanBarY = 10,
+		HumanDY = 3,
+		barY = 0,
+		ctx = null,
 		interval = null;
 
-	function end() {
-		document.onkeydown = null;
-		clearInterval(interval);
-	}
-
-	function init() {
+	var init = function(container) {
+		ctx = container.getContext("2d");
 		document.onkeydown = onkeydown;
 		interval = setInterval(draw, 10);
 	};
 
-	function draw() {
+	var end = function() {
+		document.onkeydown = null;
+		clearInterval(interval);
+	};
+
+	var draw = function() {
 		ctx.clearRect(0, 0, 500, 300);
-		if(!endGame) {
+		if (!endGame) {
 			drawBall();
 			drawBars();
 			checkCollision();
@@ -28,7 +36,7 @@ GAMES.pong = function(container) {
 		}
 	};
 
-	function drawEndGameText() {
+	var drawEndGameText = function() {
 		ctx.font = '30px sans-serif';
 		ctx.textBaseline = 'top';
 		ctx.fillText('Start game', 180, 120);
@@ -38,7 +46,7 @@ GAMES.pong = function(container) {
 		ctx.fillText('Press enter to start', 195, 160);
 	};
 
-	function onkeydown(event) {
+	var onkeydown = function(event) {
 		event.preventDefault();
 		var keyCode;
 		if (event == null) {
@@ -46,9 +54,9 @@ GAMES.pong = function(container) {
 		} else {
 			keyCode = event.keyCode;
 		}
-		switch(keyCode) {
+		switch (keyCode) {
 			case 13:
-				if(endGame) {
+				if (endGame) {
 					endGame = false;
 					x = 30;
 					y = 30;
@@ -77,13 +85,13 @@ GAMES.pong = function(container) {
 		}
 	};
 
-	function drawBall() {
+	var drawBall = function() {
 		ctx.beginPath();
 		ctx.arc(x, y, 5, 0, Math.PI * 2, true);
 		ctx.closePath();
 		ctx.fill();
 
-		if(y >= 300 || y <= 0) {
+		if (y >= 300 || y <= 0) {
 			dy = -dy;
 		}
 
@@ -91,8 +99,8 @@ GAMES.pong = function(container) {
 		y += dy;
 	};
 
-	function drawBars() {
-		if(y > 260) {
+	var drawBars = function() {
+		if (y > 260) {
 			barY = 260;
 		} else {
 			barY = y;
@@ -105,7 +113,7 @@ GAMES.pong = function(container) {
 		ctx.closePath();
 	};
 
-	function checkCollision() {
+	var checkCollision = function() {
 		ctx.font = '30px sans-serif';
 		ctx.textBaseline = 'top';
 		ctx.fillText('X:' + x, 180, 120);
@@ -127,4 +135,4 @@ GAMES.pong = function(container) {
 		init: init,
 		end: end
 	};
-}
+}());
