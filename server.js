@@ -4,6 +4,7 @@ var connect = require('connect'),
 var SERVER_PORT = 3000;
 
 var app = connect()
+	.use(connect.favicon('app/static/favicon.ico'))
 	.use(connect.logger())
 	.use(connect.static('public'))
 	.use(function(req, res) {
