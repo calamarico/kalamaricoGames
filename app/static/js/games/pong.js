@@ -15,9 +15,13 @@ GAMES.pong = (function() {
 		interval = null;
 
 	var init = function(container) {
+		var socket = io.connect('/pong');
 		ctx = container.getContext("2d");
 		document.onkeydown = onkeydown;
 		interval = setInterval(draw, 10);
+		socket.send("init", function() {
+			console.log("init recibido por servidor");
+		})
 	};
 
 	var end = function() {

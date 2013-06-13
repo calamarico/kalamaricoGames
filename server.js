@@ -15,8 +15,11 @@ var app = connect()
 	.listen(SERVER_PORT);
 
 var io = socketio.listen(app);
-io.sockets.on('connection', function(socket) {
-	manageSockets.manage(socket);
+
+io
+.of('/pong')
+.on('connection', function(socket) {
+	manageSockets.manage(socket, 'pong');
 });
 
 if (app) {
