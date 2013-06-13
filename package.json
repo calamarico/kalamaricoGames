@@ -3,7 +3,11 @@
   "description": "Kalamarico Games Gallery Application",
   "version": "0.0.1",
   "private": true,
+  "dependencies": {
+    "express": "3.x"
+  },
   "devDependencies": {
-    "socket.io": "~0.9.14"
+    "connect": "~2.7.11",
+	"socket.io": "~0.9.14"
   }
 }
