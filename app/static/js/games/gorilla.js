@@ -1,11 +1,12 @@
-GAMES.gorilla = function(container) {
-	var ctx = container.getContext("2d");
+GAMES.gorilla = (function() {
+	var ctx = null;
 
-	var init = function() {
+	var init = function(container) {
+		ctx = container.getContext("2d");
 		ctx.font = "bold 22px sans-serif";
-		ctx.fillText("Juego no disponible",50,50);
+		ctx.fillText("Juego no disponible", 50, 50);
 	};
-	
+
 	var end = function() {
 		return;
 	};
@@ -14,4 +15,4 @@ GAMES.gorilla = function(container) {
 		init: init,
 		end: end
 	};
-}
+}());

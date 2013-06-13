@@ -29,11 +29,13 @@ var dropGame = function(event) {
 
 	if (game) {
 		game.end();
-		document.getElementById('Canvas').getContext("2d").clearRect(0,0,500,300);
+		document.getElementById('Canvas')
+			.getContext("2d")
+			.clearRect(0, 0, 500, 300);
 	}
 
 	if (GAMES[event.dataTransfer.getData('id')]) {
-		game = GAMES[event.dataTransfer.getData('id')](document.getElementById('Canvas'));
-		game.init();
+		game = GAMES[event.dataTransfer.getData('id')];
+		game.init(document.getElementById('Canvas'));
 	}
 };
