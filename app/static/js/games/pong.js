@@ -19,9 +19,7 @@ GAMES.pong = (function() {
 		ctx = container.getContext("2d");
 		document.onkeydown = onkeydown;
 		interval = setInterval(draw, 10);
-		socket.send("init", function() {
-			console.log("init recibido por servidor");
-		})
+		socket.emit("subscribe", {"datos":"nose"});
 	};
 
 	var end = function() {
