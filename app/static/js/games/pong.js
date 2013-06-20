@@ -5,20 +5,29 @@ GAMES.pong = (function() {
 	var endGame = true,
 		x = 0,
 		y = 0,
-		dx = 3,
-		dy = 3,
+		dx = 6,
+		dy = 6,
 		HumanBarX = 494,
 		HumanBarY = 10,
-		HumanDY = 3,
+		HumanDY = 5,
 		barY = 0,
 		ctx = null,
-		interval = null;
+		interval = null,
+		resolution = {
+			width: 600,
+			height: 400
+		},
+		requestAnimationFrame = Utils.getRequestAnimationFrame();
 
 	var init = function(container) {
+		//resize canvas
+		// document.getElementById('Canvas')
+		// 	.classList.add('pong-game');
 		var socket = io.connect('/pong');
 		ctx = container.getContext("2d");
 		document.onkeydown = onkeydown;
-		interval = setInterval(draw, 10);
+		requestAnimationFrame(gameLoop);
+		//interval = setInterval(draw, 10);
 		socket.emit("subscribe", {"datos":"nose"});
 	};
 
@@ -27,8 +36,20 @@ GAMES.pong = (function() {
 		clearInterval(interval);
 	};
 
+	var gameLoop = function() {
+		ctx.clearRect(0, 0, resolution.width, resolution.height);
+		if (!endGame) {
+			drawBall();
+			drawBars();
+			checkCollision();
+		} else {
+			drawEndGameText();
+		}
+		requestAnimationFrame(gameLoop);
+	};
+
 	var draw = function() {
-		ctx.clearRect(0, 0, 500, 300);
+		ctx.clearRect(0, 0, resolution.width, resolution.height);
 		if (!endGame) {
 			drawBall();
 			drawBars();
@@ -41,11 +62,11 @@ GAMES.pong = (function() {
 	var drawEndGameText = function() {
 		ctx.font = '30px sans-serif';
 		ctx.textBaseline = 'top';
-		ctx.fillText('Start game', 180, 120);
+		ctx.fillText('Start game', 230, 170);
 
 		ctx.font = '15px sans-serif';
 		ctx.textBaseline = 'top';
-		ctx.fillText('Press enter to start', 195, 160);
+		ctx.fillText('Press enter to start', 245, 210);
 	};
 
 	var onkeydown = function(event) {
@@ -77,8 +98,8 @@ GAMES.pong = (function() {
 			case 40:
 				HumanBarY += HumanDY;
 
-				if (HumanBarY > 300) {
-					HumanBarY = 300;
+				if (HumanBarY > 400) {
+					HumanBarY = 400;
 				}
 
 				break;
@@ -93,7 +114,7 @@ GAMES.pong = (function() {
 		ctx.closePath();
 		ctx.fill();
 
-		if (y >= 300 || y <= 0) {
+		if (y >= 400 || y <= 0) {
 			dy = -dy;
 		}
 
@@ -102,8 +123,8 @@ GAMES.pong = (function() {
 	};
 
 	var drawBars = function() {
-		if (y > 260) {
-			barY = 260;
+		if (y > 460) {
+			barY = 460;
 		} else {
 			barY = y;
 		}
@@ -111,23 +132,18 @@ GAMES.pong = (function() {
 		ctx.beginPath();
 
 		ctx.fillRect(5, barY, 10, 40);
-		ctx.fillRect(490, HumanBarY, 10, 40);
+		ctx.fillRect(590, HumanBarY, 10, 40);
 		ctx.closePath();
 	};
 
 	var checkCollision = function() {
 		ctx.font = '30px sans-serif';
 		ctx.textBaseline = 'top';
-		ctx.fillText('X:' + x, 180, 120);
 
-		if (x < 5) {
-			console.log('x ya es menor que 5:' + x + ' y:' + y + ' barY:' + barY);
-		}
-
-		if (x > 500 || x < 0) {
+		if (x > 600 || x < 0) {
 			endGame = true;
 		} else if ((x < 5 && y <= (barY + 40) && y >= barY) ||
-			(x > 490 && y < (HumanBarY + 40) && y > HumanBarY)) {
+			(x > 590 && y < (HumanBarY + 40) && y > HumanBarY)) {
 			dx = -dx;
 		}
 	};
