@@ -1,0 +1,57 @@
+body, div, h1, form, fieldset, input, textarea {
+  margin: 0; padding: 0; border: 0; outline: none;
+}
+html {
+  background-color: #031F21;
+}
+.left {
+	float: left;
+	width: 400px;
+	height: 750px;
+	background-color: #090B0C;
+}
+.right {
+	overflow: hidden;
+	display:inline-block;
+  	height:750px;
+}
+h2 {
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 18px;
+	text-align: center;
+	margin-top: 40px;
+	color: white;
+}
+h1 {
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 18px;
+	text-align: center;
+	color: white;
+	padding-bottom: 15px;
+}
+.box-image {
+	margin-top: 50px;
+	text-align: center;
+}
+.box-image p {
+	margin-top: 5px;
+	text-align: center;
+	color: yellow;
+}
+.off {
+	background-color: grey;
+}
+.container-style {
+	width: 600px;
+	height: 400px;
+	margin-top: 100px;
+	margin-left: 200px;
+	border: 1px solid #9647B2;
+}
+canvas {
+	 margin: 0; padding: 0; border: 0;
+}
+.pong-game {
+	width: 600px;
+	height: 400px;
+}
