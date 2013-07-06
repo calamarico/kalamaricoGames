@@ -1,10 +1,35 @@
-function onClick(event) {
-	var obj = document.getElementById("username");
-	// Con jquery es muy sencillo saber si un input esta a invalid, de momento
-	// obviamos la validación de formulario
-	if (obj.value.length > 0) {
-		// De momento asumimos que el navegador soporta webstorage
-		localStorage.setItem('user', obj.value);
-		window.location = 'main.html';
+$(document).ready(function() {
+	document.onkeydown = onKeyPress;
+});
+
+var onKeyPress = function(event) {
+	event.preventDefault();
+	event = event || {};
+	var keyCode = event.keyCode || window.event.keyCode;
+	var temp = $('#selection');
+
+	switch (keyCode) {
+		case 37:
+			animate($('#selection'), 'fadeOutLeft', 'fadeInRight');
+			break;
+		case 39:
+			animate($('#selection'), 'fadeOutRight', 'fadeInLeft');
+			break;
 	}
-}
+};
+
+var animate = function(element, start, end) {
+	if (!animate.animating) {
+		animate.animating = true;
+		$(element).addClass('animated ' + start);
+		var waitStart = window.setTimeout(function() {
+			$(element).removeClass('animated ' + start);
+			$(element).addClass('animated ' + end);
+			var waitEnd = window.setTimeout(function() {
+				$(element).removeClass('animated ' + end);
+				animate.animating = false;
+			}, 600);
+		}, 600);
+	}
+};
+animate.animating = false;
