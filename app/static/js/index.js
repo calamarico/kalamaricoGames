@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	require(["load"], function(load) {
+		load.showLoading();
+	});
 	document.onkeydown = onKeyPress;
 });
 
