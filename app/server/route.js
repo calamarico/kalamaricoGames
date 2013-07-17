@@ -19,20 +19,20 @@ var route = function(req, res) {
 		STATIC_FOLDER + '/index.html' :
 		STATIC_FOLDER + req.url;
 
-		fs.readFile(pathFile, function(err, data) {
-			if (err) {
-				console.error("File not found: " + pathFile);
-				res.writeHead(404);
-				res.end();
-				return;
-			}
-			fileSender({
-				'req': req,
-				'res': res,
-				'data': data,
-				'pathFile': pathFile
-			});
+	fs.readFile(pathFile, function(err, data) {
+		if (err) {
+			console.error("File not found: " + pathFile);
+			res.writeHead(404);
+			res.end();
+			return;
+		}
+		fileSender({
+			'req': req,
+			'res': res,
+			'data': data,
+			'pathFile': pathFile
 		});
+	});
 };
 
 var fileSender = function(data) {

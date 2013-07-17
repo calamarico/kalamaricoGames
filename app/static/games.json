@@ -1,0 +1,10 @@
+{
+	"pong": {
+		"name": "Pong!",
+		"src": "games/pong.js"
+	},
+	"gorilla": {
+		"name": "Gorilla!",
+		"src": "games/gorilla.js"
+	}
+}

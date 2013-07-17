@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	require(["load"], function(load) {
 		load.showLoading();
+		load.loadContent();
 	});
 	document.onkeydown = onKeyPress;
 });

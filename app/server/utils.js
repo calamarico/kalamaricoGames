@@ -5,5 +5,6 @@ exports.mimeTypes = {
 	'.ttf': 'application/x-font-woff',
 	'.png': 'image/png',
 	'.jpg': 'image/jpeg',
-	'.gif': 'image/gif'
+	'.gif': 'image/gif',
+	'.json': 'application/json'
 };
