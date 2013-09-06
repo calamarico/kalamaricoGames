@@ -1,5 +1,6 @@
 define(['./animation'], function(animation) {
 	var showLoading = function() {
+		$('#screen').append('<div id="selection" class="selection">');
 		$('#selection').append("<p>Loading...</p>");
 	};
 
@@ -19,7 +20,7 @@ define(['./animation'], function(animation) {
 			start: 'hinge',
 			waitingStart: 2000,
 			callback: function(element) {
-				$(element).children().first().remove();
+				$(element).remove();
 			},
 			param: $('#selection')
 		});
